@@ -1,7 +1,7 @@
 <script>
 	import { spring } from 'svelte/motion';
 
-	let count = 0;
+	export let count = 0;
 
 	const displayed_count = spring();
 	$: displayed_count.set(count);
@@ -10,6 +10,16 @@
 	function modulo(n, m) {
 		// handle negative numbers
 		return ((n % m) + m) % m;
+	}
+	function saveCount() {
+		console.log(count);
+		fetch('/api/count', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ count })
+		});
 	}
 </script>
 
@@ -32,6 +42,9 @@
 			<path d="M0,0.5 L1,0.5 M0.5,0 L0.5,1" />
 		</svg>
 	</button>
+</div>
+<div>
+	<button on:click={saveCount}> Save </button>
 </div>
 
 <style>
