@@ -5,6 +5,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
+		"postinstall": "prisma generate",
 		"test": "npm run test:integration && npm run test:unit",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
